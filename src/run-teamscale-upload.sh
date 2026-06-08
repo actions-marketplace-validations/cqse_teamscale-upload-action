@@ -1,11 +1,11 @@
 #!/bin/bash
 
 if [[ "$OS" == "Windows" ]]; then
-  curl -L https://github.com/cqse/teamscale-upload/releases/download/v2.9.14/teamscale-upload-windows-x86_64.zip -o teamscale-upload.zip
+  curl -L https://github.com/cqse/teamscale-upload/releases/download/v2.10.0/teamscale-upload-windows-x86_64.zip -o teamscale-upload.zip
   unzip teamscale-upload.zip;
   LAUNCHER="./teamscale-upload/bin/teamscale-upload.bat"
 else
-  wget -O teamscale-upload.zip https://github.com/cqse/teamscale-upload/releases/download/v2.9.14/teamscale-upload-linux-x86_64.zip;
+  wget -O teamscale-upload.zip https://github.com/cqse/teamscale-upload/releases/download/v2.10.0/teamscale-upload-linux-x86_64.zip;
   unzip teamscale-upload.zip
   LAUNCHER="./teamscale-upload/bin/teamscale-upload"
   chmod +x "$LAUNCHER"
@@ -26,6 +26,9 @@ if [ -n "$REPOSITORY" ]; then
 fi
 if [ -n "$BRANCH_AND_TIMESTAMP" ]; then
   ARGS+=( "--branch-and-timestamp" "$BRANCH_AND_TIMESTAMP" )
+fi
+if [ -n "$PATH_PREFIX" ]; then
+  ARGS+=( "--path-prefix" "$PATH_PREFIX" )
 fi
 if [ -n "$MESSAGE" ]; then
   ARGS+=( "--message" "${MESSAGE}" )
